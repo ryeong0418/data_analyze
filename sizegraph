@@ -1,0 +1,38 @@
+import pandas as pd
+import csv
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.rc("font",family="Malgun Gothic")
+df = pd.read_csv("C:/Users/mdc_ntss_58/Desktop/돼지/result.csv")
+ratio_list=[]
+y_list=[]
+
+df["size"]=0
+df.loc[df["CarcassWeightFromScale"] < 70,"size"] = "70미만"
+df.loc[(df["CarcassWeightFromScale"] >=70) & (df["CarcassWeightFromScale"] < 80),"size"] = "70이상 80미만"
+df.loc[(df["CarcassWeightFromScale"] >=80) & (df["CarcassWeightFromScale"] < 90),"size"] = "80이상 90미만"
+df.loc[(df["CarcassWeightFromScale"] >=90) & (df["CarcassWeightFromScale"] < 100),"size"] = "90이상 100미만"
+df.loc[(df["CarcassWeightFromScale"] >=100) & (df["CarcassWeightFromScale"] < 110),"size"] = "100이상 110미만"
+df.loc[df["CarcassWeightFromScale"] >=110, "size"] = "110이상"
+total_size = df["size"].value_counts()
+arrange=["70미만","70이상 80미만","80이상 90미만","90이상 100미만","100이상 110미만","110이상"]
+df_arrange = total_size.loc[arrange]
+print(df_arrange)
+
+for i in df_arrange:
+    y_list.append(i)
+print(y_list)
+
+plt.bar(arrange,y_list,color="pink")
+ax=plt.subplot()
+ax.set_xticklabels(["70미만","70이상 80미만","80이상 90미만","90이상 100미만","100이상 110미만","110이상"],rotation=30)
+
+plt.xlabel("도체중",fontsize=12,labelpad=0.0)
+plt.ylabel("개수",fontsize=12,rotation=360,labelpad=0.5)
+
+for rect in plt.bar(arrange,y_list,color="pink"):
+    height=rect.get_height()
+    plt.text(rect.get_x()+rect.get_width()/2.0,height,"%.0f"%height,ha='center',va='bottom',size=12)
+#
+plt.show()
