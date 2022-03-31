@@ -3,6 +3,6 @@ df = pd.read_csv("C:/Users/result.csv")
 print(df)
 a=df[df["006_CarcassWt_6"]==0].index
 print(a)
-df=df.drop(a,axis=0)
+df=df.drop(a,axis=0)      #df에 다시 넣어야함
 print("삭제후 df", df)
 df.to_csv("C:/Users/modify_final.csv",mode="w")
