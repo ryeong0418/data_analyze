@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 plt.rc("font",family="Malgun Gothic")
-df = pd.read_csv("C:/Users/mdc_ntss_58/Desktop/돼지/result.csv")
+df = pd.read_csv("C:/Users/result.csv")
 ratio_list=[]
 y_list=[]
 
@@ -28,7 +28,7 @@ plt.bar(arrange,y_list,color="pink")
 ax=plt.subplot()
 ax.set_xticklabels(["70미만","70이상 80미만","80이상 90미만","90이상 100미만","100이상 110미만","110이상"],rotation=30)
 
-plt.xlabel("도체중",fontsize=12,labelpad=0.0)
+plt.xlabel("체중",fontsize=12,labelpad=0.0)
 plt.ylabel("개수",fontsize=12,rotation=360,labelpad=0.5)
 
 for rect in plt.bar(arrange,y_list,color="pink"):
